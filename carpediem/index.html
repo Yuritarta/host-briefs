@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CarpediemHomes · Seu portfólio antes da alta temporada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#222222; --ink2:#5a5a5a; --line:#ebebeb; --soft:#f7f7f7;
+  --host:#ff385c; --host-soft:#ffe9ee; --comp:#f5a623; --comp-soft:#fff3dd; --comp-ink:#9a6400;
+  --good:#1c8c5a; --good-soft:#e3f5ec; --warn:#c13515;
+  --btn:#222222; --btn-ink:#ffffff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121212; --ink:#f2f2f2; --ink2:#a8a8a8; --line:#2a2a2a; --soft:#1c1c1c;
+    --host-soft:#3a1a22; --comp-soft:#3a2d12; --comp-ink:#f5a623; --good-soft:#143324;
+    --btn:#f2f2f2; --btn-ink:#121212;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121212; --ink:#f2f2f2; --ink2:#a8a8a8; --line:#2a2a2a; --soft:#1c1c1c;
+  --host-soft:#3a1a22; --comp-soft:#3a2d12; --comp-ink:#f5a623; --good-soft:#143324;
+  --btn:#f2f2f2; --btn-ink:#121212;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+main{max-width:520px;margin:0 auto;padding:0 22px 130px}
+h1,h2,h3,p{margin:0}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{font-size:26px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+.lead{color:var(--ink2);font-size:16px}
+.src{display:block;margin-top:14px;color:var(--ink2);font-size:12.5px}
+
+header{padding:26px 0 8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;color:var(--host);font-size:18px}
+.period{color:var(--ink2);font-size:13px}
+
+.hero h1{font-size:34px;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.hero .lead{margin-top:14px}
+.gap{margin-top:30px}
+.gap .row{display:grid;grid-template-columns:92px 1fr 64px;align-items:center;gap:12px;margin-bottom:14px;font-size:15px}
+.gap .who{font-weight:600}
+.gap .track{height:28px;background:var(--soft);border-radius:6px;overflow:hidden;position:relative}
+.gap .fill{position:absolute;inset:0 auto 0 0;border-radius:6px;transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.gap.show .fill{transform:scaleX(1)}
+.gap .host .fill{background:var(--host)} .gap .comp .fill{background:var(--comp)}
+.gap .val{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.gap .host .val{color:var(--host)} .gap .comp .val{color:var(--comp)}
+.callout{margin-top:22px;padding:16px 18px;background:var(--host-soft);border-radius:12px;font-size:15.5px}
+.callout strong{color:var(--host)}
+
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:22px}
+.kpi{padding:14px 0;border-top:2px solid var(--line)}
+.kpi .n{font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .l{color:var(--ink2);font-size:13px;line-height:1.35}
+.kpi .d{font-size:12.5px;font-weight:600;margin-left:6px}
+.up{color:var(--good)}
+
+.chart{margin-top:22px}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--ink2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend .h i{background:var(--host)} .legend .c i{background:var(--comp)}
+
+/* comparação */
+.score{margin-top:20px;padding:16px 18px;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.score .n{font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.score .n b{color:var(--good)}
+.score .l{font-size:13px;color:var(--ink2);line-height:1.3;text-align:right}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{position:relative;min-height:168px;perspective:900px;cursor:pointer;border:0;background:none;padding:0;text-align:left;font-family:inherit;color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--host);outline-offset:3px;border-radius:14px}
+.card .face{position:absolute;inset:0;border-radius:14px;padding:14px;backface-visibility:hidden;transition:transform .55s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+.card .front{background:var(--ink);color:var(--bg);justify-content:space-between}
+.card .front .t{font-weight:700;font-size:15px;line-height:1.25}
+.card .front .tap{font-size:12px;opacity:.7}
+.card .back{background:var(--bg);border:1.5px solid var(--line);transform:rotateY(180deg)}
+.card.flip .front{transform:rotateY(180deg)} .card.flip .back{transform:rotateY(0)}
+.card .back .t{font-size:12.5px;color:var(--ink2);font-weight:600;line-height:1.2}
+.card .back .vs{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.card .back .vs div{font-size:11.5px;color:var(--ink2)}
+.card .back .vs b{display:block;font-size:19px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.card .back .vs .me b{color:var(--host)} .card .back .vs .them b{color:var(--comp)}
+.card .badge{margin-top:auto;align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:999px}
+.card.win .badge{background:var(--good-soft);color:var(--good)} .card.win .back{border-color:var(--good)}
+.card.opp .badge{background:var(--host-soft);color:var(--host)}
+.card .fix{font-size:11.5px;color:var(--ink2);margin-top:4px}
+.card .fix a{color:var(--ink);font-weight:700;text-decoration:none}
+.reveal-all{margin-top:14px;font-family:inherit;font-size:14px;font-weight:600;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:999px;padding:10px 16px;cursor:pointer}
+
+/* actions */
+.total{margin-top:18px;padding:18px 20px;border-radius:14px;background:var(--good-soft);font-size:15px}
+.total .n{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--good);font-variant-numeric:tabular-nums}
+.action{margin-top:16px;border:1.5px solid var(--line);border-radius:16px;padding:20px 18px;transition:border-color .25s,background .25s}
+.action.on{border-color:var(--good);background:var(--good-soft)}
+.action .k{display:flex;gap:14px;align-items:flex-start}
+.action .num{flex:0 0 32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:800;display:grid;place-items:center;font-size:15px}
+.action.on .num{background:var(--good);color:#fff}
+.action h3{font-size:19px;font-weight:700;line-height:1.25}
+.action p{margin-top:6px;color:var(--ink2);font-size:15px}
+.evidence{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.evidence span{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--soft)}
+.evidence .r{background:var(--host-soft);color:var(--host)} .evidence .a{background:var(--comp-soft);color:var(--comp-ink)}
+.action.on .evidence span{background:var(--bg)}
+.impact{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact .n{font-size:22px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.impact .l{font-size:12.5px;color:var(--ink2);line-height:1.35}
+details{margin-top:10px;font-size:13px;color:var(--ink2)}
+details summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none}
+details summary::before{content:"+ ";font-weight:800}
+details[open] summary::before{content:"− "}
+details p{margin-top:6px;font-size:13px}
+.markup{margin-top:10px;font-size:13.5px;color:var(--ink2);padding:10px 12px;background:var(--soft);border-radius:10px}
+.action.on .markup{background:var(--bg)}
+.toggle{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:12px}
+.toggle label{font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.sw{position:relative;width:50px;height:30px;border-radius:15px;background:#cfcfcf;transition:background .2s;flex:0 0 auto}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input.plan,input.pOn{position:absolute;opacity:0;width:0;height:0}
+input.plan:checked + .sw,input.pOn:checked + .sw{background:var(--good)} input.plan:checked + .sw::after,input.pOn:checked + .sw::after{transform:translateX(20px)}
+input.plan:focus-visible + .sw,input.pOn:focus-visible + .sw{outline:3px solid var(--host);outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:15px 18px;border-radius:12px;background:var(--btn);color:var(--btn-ink);font-weight:700;text-decoration:none;font-size:16px;transition:transform .12s;border:0;cursor:pointer;font-family:inherit}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--host);color:#fff}
+.btn:focus-visible{outline:3px solid var(--host);outline-offset:3px}
+
+/* calculadora */
+.calc{margin-top:22px;padding:22px 20px;background:var(--soft);border-radius:16px}
+.calc .field{display:grid;grid-template-columns:1fr 130px;gap:12px;align-items:center;margin-bottom:12px;font-size:15px;font-weight:600}
+.calc .field small{display:block;font-weight:400;color:var(--ink2);font-size:12.5px}
+.calc input[type=number]{font-family:inherit;font-size:17px;font-weight:700;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%;text-align:right}
+.calc input[type=number]:focus-visible{outline:3px solid var(--host);outline-offset:2px}
+.today{margin:18px 0 6px;padding:16px 18px;background:var(--bg);border-radius:12px}
+.today .l{font-size:13px;color:var(--ink2)} .today .n{font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.promo{margin-top:12px;padding:14px 16px;background:var(--bg);border-radius:12px;border:1.5px solid var(--line);transition:border-color .2s}
+.promo.on{border-color:var(--good)}
+.promo .head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.promo .head label{font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.promo .pct{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13px;color:var(--ink2)}
+.promo .pct input[type=range]{flex:1;accent-color:var(--host);margin:0}
+.promo .pct output{font-weight:800;color:var(--ink);font-size:16px;min-width:40px;text-align:right;font-variant-numeric:tabular-nums}
+.promo .hint{font-size:12.5px;color:var(--ink2);margin-top:6px}
+.promo:not(.on) .pct,.promo:not(.on) .hint{display:none}
+.markup-row{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.markup-row label{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
+.markup-row label output{color:var(--host);font-size:18px;font-variant-numeric:tabular-nums}
+.markup-row input[type=range]{width:100%;accent-color:var(--host);margin:10px 0 4px}
+.markup-row small{color:var(--ink2);font-size:12.5px}
+.result{margin-top:18px;padding:18px;border-radius:14px;background:var(--good-soft)}
+.result .big{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--good);font-variant-numeric:tabular-nums;line-height:1.1}
+.result .big.neg{color:var(--warn)}
+.result .sub{font-size:14px;color:var(--ink2);margin-top:4px}
+.result .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)}
+.result .grid .n{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.result .grid .l{font-size:12.5px;color:var(--ink2);line-height:1.3}
+.result .tip{margin-top:14px;font-size:13.5px;padding:10px 12px;background:var(--bg);border-radius:10px}
+
+.calc .step{font-weight:800;font-size:14px;margin:18px 0 8px;color:var(--ink)}
+.calc .step:first-child{margin-top:0}
+.calc .stephelp{font-size:13px;color:var(--ink2);margin:-4px 0 10px}
+.markup-row{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)} .markup-row .step{margin-top:0} .markup-row .tip{margin-top:12px;font-size:13.5px;padding:10px 12px;background:var(--bg);border-radius:10px}
+/* quality */
+.rate{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;margin-top:18px;font-size:15px}
+.rate .bar{height:10px;background:var(--soft);border-radius:5px;overflow:hidden;position:relative;grid-column:1/-1;margin-bottom:6px}
+.rate .bar i{position:absolute;inset:0 auto 0 0;background:var(--host);border-radius:5px}
+.rate .bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--comp)}
+.rate .v{font-weight:700;font-variant-numeric:tabular-nums}
+
+/* feedback */
+.q{margin-top:20px}
+.q p{font-weight:600;font-size:15px;margin-bottom:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{font-family:inherit;font-size:14px;padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.chips button:focus-visible{outline:3px solid var(--host);outline-offset:2px}
+
+.close{text-align:center}
+.close h2{font-size:24px}
+.close .alt{margin-top:12px;color:var(--ink2);font-size:14px}
+.close .alt a{color:var(--ink);font-weight:600}
+footer{color:var(--ink2);font-size:12px;text-align:center;padding:24px 22px 0;line-height:1.5}
+
+/* sticky plan bar */
+.bar-plan{position:fixed;left:0;right:0;bottom:0;padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.08);z-index:10;transform:translateY(110%);transition:transform .3s}
+.bar-plan.show{transform:translateY(0)}
+.bar-plan .in{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar-plan .t{font-size:13px;color:var(--ink2)} .bar-plan .n{font-size:18px;font-weight:800;color:var(--good);font-variant-numeric:tabular-nums}
+.bar-plan a{flex:0 0 auto;padding:11px 16px;border-radius:10px;background:var(--host);color:#fff;font-weight:700;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="brand">Airbnb</div>
+  <div class="period">Dados dos últimos 30 dias · 26 out 2026</div>
+</header>
+
+<section class="hero">
+  <h1>Carpediem, a alta temporada começa em 5 semanas. Veja como seu portfólio está posicionado.</h1>
+  <p class="lead">Preparamos este resumo com os dados das suas 788 acomodações em comparação com anúncios semelhantes na sua região. Leva 3 minutos e termina com um plano que você monta em dois toques.</p>
+  <div class="gap" id="gap">
+    <div class="row host"><span class="who">Você</span><div class="track"><div class="fill" style="width:26%"></div></div><span class="val">5,1%</span></div>
+    <div class="row comp"><span class="who">Semelhantes</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="val">15–20%</span></div>
+  </div>
+  <p class="callout">Essa é a <strong>ocupação já reservada</strong> para os próximos meses. Anúncios semelhantes ao seu têm cerca de <strong>3 vezes mais noites na agenda</strong> neste momento.</p>
+  <span class="src">Fonte: Pinpoint, Forward Occupancy Rate. Comparação com conjunto de anúncios semelhantes.</span>
+</section>
+
+<section>
+  <h2>O que já está funcionando</h2>
+  <p class="lead">Antes do que ajustar, o que vale reconhecer: as reservas cresceram um terço, quem vê seu anúncio clica mais e quem clica reserva mais do que a média. E o desconto para hóspedes bem avaliados já cobre 91% do portfólio.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="n">US$ 283K<span class="d up">+7%</span></div><div class="l">Valor bruto reservado nos últimos 30 dias</div></div>
+    <div class="kpi"><div class="n">1.000<span class="d up">+34%</span></div><div class="l">Reservas no período</div></div>
+    <div class="kpi"><div class="n">5,4%<span class="d up">vs 5,0%</span></div><div class="l">Taxa de clique na busca, acima dos semelhantes</div></div>
+    <div class="kpi"><div class="n">4,2 nts<span class="d up">vs 3,7</span></div><div class="l">Estadia média, mais longa que a dos semelhantes</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Onde a oportunidade está</h2>
+  <p class="lead">Mês a mês, a diferença entre o que você já tem reservado e o que anúncios semelhantes já têm. Dezembro e janeiro são os meses que mais pesam.</p>
+  <div class="chart" aria-label="Ocupação reservada por mês, você versus semelhantes">
+    <svg viewBox="0 0 480 220" role="img">
+      <g font-family="inherit" font-size="12" fill="var(--ink2)">
+        <line x1="40" y1="180" x2="470" y2="180" stroke="var(--line)"/>
+        <line x1="40" y1="110" x2="470" y2="110" stroke="var(--line)" stroke-dasharray="3 4"/>
+        <line x1="40" y1="40" x2="470" y2="40" stroke="var(--line)" stroke-dasharray="3 4"/>
+        <text x="34" y="184" text-anchor="end">0%</text><text x="34" y="114" text-anchor="end">15%</text><text x="34" y="44" text-anchor="end">30%</text>
+      </g>
+      <g>
+        <rect x="58" y="87" width="24" height="93" rx="4" fill="var(--host)"/><rect x="86" y="54" width="24" height="126" rx="4" fill="var(--comp)"/>
+        <rect x="128" y="133" width="24" height="47" rx="4" fill="var(--host)"/><rect x="156" y="96" width="24" height="84" rx="4" fill="var(--comp)"/>
+        <rect x="198" y="157" width="24" height="23" rx="4" fill="var(--host)"/><rect x="226" y="124" width="24" height="56" rx="4" fill="var(--comp)"/>
+        <rect x="268" y="171" width="24" height="9" rx="4" fill="var(--host)"/><rect x="296" y="124" width="24" height="56" rx="4" fill="var(--comp)"/>
+        <rect x="338" y="173" width="24" height="7" rx="4" fill="var(--host)"/><rect x="366" y="147" width="24" height="33" rx="4" fill="var(--comp)"/>
+        <rect x="408" y="175" width="24" height="5" rx="4" fill="var(--host)"/><rect x="436" y="152" width="24" height="28" rx="4" fill="var(--comp)"/>
+      </g>
+      <g font-family="inherit" font-size="12.5" fill="var(--ink2)" text-anchor="middle">
+        <text x="84" y="202">out</text><text x="154" y="202">nov</text><text x="224" y="202" font-weight="700" fill="var(--ink)">dez</text><text x="294" y="202" font-weight="700" fill="var(--ink)">jan</text><text x="364" y="202">fev</text><text x="434" y="202">mar</text>
+      </g>
+    </svg>
+    <div class="legend"><span class="h"><i></i>Você</span><span class="c"><i></i>Anúncios semelhantes</span></div>
+  </div>
+  <span class="src">Fonte: Pinpoint, Occupancy Rate by Period.</span>
+</section>
+
+<section id="comparacao">
+  <h2>Você está se destacando?</h2>
+  <p class="lead">Oito comparações entre o seu portfólio e anúncios semelhantes na sua região. Toque em cada carta para revelar. Onde você está atrás, mostramos qual ação do plano resolve.</p>
+  <div class="score"><div class="n"><b id="scW">0</b> <span style="color:var(--ink2);font-size:18px">de</span> <span id="scT">0</span></div><div class="l">comparações em que você<br>já está em vantagem</div></div>
+  <div class="cards" id="cards">
+    <button class="card win"><div class="face front"><div class="t">Taxa de clique na busca</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Taxa de clique na busca</div><div class="vs"><div class="me"><b>5,4%</b>você</div><div class="them"><b>5,0%</b>semelhantes</div></div><span class="badge">Em vantagem</span><div class="fix">Seus anúncios chamam atenção quando aparecem.</div></div></button>
+    <button class="card win"><div class="face front"><div class="t">Visitas que viram reserva</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Visitas que viram reserva</div><div class="vs"><div class="me"><b>1,2%</b>você</div><div class="them"><b>1,0%</b>semelhantes</div></div><span class="badge">Em vantagem</span><div class="fix">Quem entra no anúncio reserva mais do que a média.</div></div></button>
+    <button class="card win"><div class="face front"><div class="t">Desconto para hóspedes bem avaliados</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Desconto para hóspedes bem avaliados</div><div class="vs"><div class="me"><b>91%</b>dos seus anúncios</div><div class="them"><b>21%</b>semelhantes</div></div><span class="badge">Em vantagem</span><div class="fix">Ele responde por 59% das suas reservas.</div></div></button>
+    <button class="card opp"><div class="face front"><div class="t">Ocupação já reservada</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Ocupação já reservada</div><div class="vs"><div class="me"><b>5,1%</b>você</div><div class="them"><b>15–20%</b>semelhantes</div></div><span class="badge">Oportunidade</span><div class="fix"><a href="#plano">Ações 1 e 2</a> do plano</div></div></button>
+    <button class="card opp"><div class="face front"><div class="t">Noites bloqueadas</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Noites bloqueadas</div><div class="vs"><div class="me"><b>33%</b>você</div><div class="them"><b>20–25%</b>semelhantes</div></div><span class="badge">Oportunidade</span><div class="fix"><a href="#plano">Ação 1</a> do plano</div></div></button>
+    <button class="card opp"><div class="face front"><div class="t">Desconto de reserva antecipada</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Desconto de reserva antecipada</div><div class="vs"><div class="me"><b>0,1%</b>dos seus anúncios</div><div class="them"><b>26,5%</b>semelhantes</div></div><span class="badge">Oportunidade</span><div class="fix"><a href="#plano">Ação 2</a> do plano</div></div></button>
+    <button class="card opp"><div class="face front"><div class="t">Reservas com mais de 60 dias de antecedência</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Reservas com mais de 60 dias de antecedência</div><div class="vs"><div class="me"><b>6%</b>das suas reservas</div><div class="them"><b>18%</b>semelhantes</div></div><span class="badge">Oportunidade</span><div class="fix">É o que enche dezembro em outubro. <a href="#plano">Ação 2</a></div></div></button>
+    <button class="card opp"><div class="face front"><div class="t">Anúncios com selo Preferido dos Hóspedes</div><div class="tap">toque para revelar</div></div><div class="face back"><div class="t">Anúncios com selo Preferido dos Hóspedes</div><div class="vs"><div class="me"><b>8,9%</b>você</div><div class="them"><b>47,3%</b>semelhantes</div></div><span class="badge">Oportunidade</span><div class="fix">Depende da nota e da taxa de problemas. <a href="#plano">Ações 4 e 5</a></div></div></button>
+  </div>
+  <button class="reveal-all" id="revealAll" type="button">Revelar todas</button>
+  <span class="src">Fonte: Pinpoint, últimos 30 dias. Comparação com conjunto de anúncios semelhantes.</span>
+</section>
+
+<section id="plano">
+  <h2>Monte seu plano para dezembro</h2>
+  <p class="lead">As ações abaixo estão em ordem de impacto esperado, cada uma com a estimativa do que pode gerar por mês. Ative as que fizerem sentido e veja o total. Nenhuma delas mexe no seu preço: você continua definindo o valor base e pode ajustá-lo quando quiser.</p>
+
+  <div class="total" id="total">
+    <div class="n" id="totGbv">Nada selecionado</div>
+    <div id="totTxt">Toque em uma ação abaixo para começar.</div>
+  </div>
+
+  <div class="action" data-nights="315" data-gbv="21" data-name="Liberar noites bloqueadas">
+    <div class="k"><div class="num"></div><div>
+      <h3>Libere noites bloqueadas</h3>
+      <p>Um terço das suas noites está bloqueado: 33%, contra 20 a 25% nos anúncios semelhantes. Com 788 acomodações, cada ponto percentual são centenas de noites. É a ação de maior impacto do seu portfólio, e cada noite liberada agora entra na janela em que a busca por dezembro mais cresce.</p>
+    </div></div>
+    <div class="evidence"><span class="r">33% bloqueadas</span><span class="a">Semelhantes: 20–25%</span><span>Ocupação futura 5,1%</span></div>
+    <div class="impact">
+      <div><div class="n">+315</div><div class="l">noites por mês, estimativa</div></div>
+      <div><div class="n">+US$ 21 mil</div><div class="l">em valor bruto por mês, estimativa</div></div>
+    </div>
+    <details><summary>Como chegamos nesse número</summary><p>Reduzir o bloqueio de 33% para 28% libera cerca de 1.180 noites por mês nas 788 acomodações. Hoje você reserva cerca de 27% das noites que estão disponíveis; aplicando essa mesma taxa, são cerca de 315 noites a mais à diária média de US$ 67.</p></details>
+    <div class="toggle"><label><input class="plan" type="checkbox"><span class="sw"></span>Incluir no meu plano</label></div>
+    <a class="btn primary" data-cta="calendar" href="#">Revisar o calendário</a>
+  </div>
+
+  <div class="action" data-nights="120" data-gbv="7" data-name="Desconto de reserva antecipada">
+    <div class="k"><div class="num"></div><div>
+      <h3>Ative o desconto de reserva antecipada em todo o portfólio</h3>
+      <p>Ele está em apenas 1 das suas 788 acomodações; anúncios semelhantes usam em 26,5%. Isso aparece na sua agenda: só 6% das suas reservas chegam com mais de 60 dias de antecedência, contra 18% dos semelhantes. Você é forte no hóspede que decide em cima da hora; o que falta é quem planeja dezembro em outubro, e é esse hóspede que o desconto de reserva antecipada atrai.</p>
+    </div></div>
+    <div class="evidence"><span class="r">1 de 788 anúncios</span><span class="a">Semelhantes: 26,5% de adoção</span><span>Antecedência 60+ dias: 6% vs 18%</span></div>
+    <div class="impact">
+      <div><div class="n">+120</div><div class="l">noites por mês, estimativa</div></div>
+      <div><div class="n">+US$ 7 mil</div><div class="l">em valor bruto por mês, estimativa</div></div>
+    </div>
+    <details><summary>Como chegamos nesse número</summary><p>Se a fatia de reservas com mais de 60 dias de antecedência subir de 6% para 12%, metade do caminho até os semelhantes, são cerca de 58 reservas a mais por mês com a sua estadia média de 4,2 noites. Considerando que metade delas seria realmente nova, chegamos a cerca de 120 noites à diária média de US$ 67, já com 10% de desconto.</p></details>
+    <div class="markup">O desconto é aplicado sobre o preço que você define. Se precisar preservar margem, basta ajustar seu preço base.</div>
+    <div class="toggle"><label><input class="plan" type="checkbox"><span class="sw"></span>Incluir no meu plano</label></div>
+    <a class="btn" data-cta="earlybird" href="#">Ativar o desconto de reserva antecipada</a>
+  </div>
+
+  <div class="action" data-nights="90" data-gbv="6" data-name="Desconto de novo anúncio nos nunca reservados">
+    <div class="k"><div class="num"></div><div>
+      <h3>Ative o desconto de novo anúncio nos 34 anúncios que nunca receberam reserva</h3>
+      <p>4,3% das suas acomodações ativas nunca foram reservadas; entre os semelhantes esse índice é zero. O desconto de novo anúncio foi feito para isso: ele dá um empurrão nas primeiras reservas de um anúncio sem avaliações. Hoje ele está ativo em 73 acomodações e gerou 216 noites no período. Junto com ele, confira se esses 34 anúncios têm o tour de fotos organizado e a opção de check-in autônomo marcada, que são as duas ações seguintes.</p>
+    </div></div>
+    <div class="evidence"><span class="r">34 anúncios sem reserva</span><span class="a">Semelhantes: 0%</span><span>Desconto gerou 216 noites</span></div>
+    <div class="impact">
+      <div><div class="n">+90</div><div class="l">noites por mês, estimativa</div></div>
+      <div><div class="n">+US$ 6 mil</div><div class="l">em valor bruto por mês, estimativa</div></div>
+    </div>
+    <details><summary>Como chegamos nesse número</summary><p>Sua média é de 5,3 noites reservadas por acomodação por mês (4.200 noites em 788 anúncios). Se os 34 anúncios chegarem à metade disso, são cerca de 90 noites à diária média de US$ 67.</p></details>
+    <div class="markup">O desconto vale só para as primeiras reservas de cada anúncio e é aplicado sobre o preço que você define. Se precisar preservar margem, basta ajustar seu preço base.</div>
+    <div class="toggle"><label><input class="plan" type="checkbox"><span class="sw"></span>Incluir no meu plano</label></div>
+    <a class="btn" data-cta="newlisting" href="#">Ativar o desconto nesses anúncios</a>
+  </div>
+
+  <div class="action" data-nights="0" data-gbv="0" data-name="Marcar check-in autônomo" data-flag="selfcheckin">
+    <div class="k"><div class="num"></div><div>
+      <h3>Marque a opção de check-in autônomo onde o hóspede já chega sozinho</h3>
+      <p>Se o seu hóspede vai direto para o endereço e entra com fechadura inteligente, teclado, cofre de chaves ou com um porteiro, isso já é um check-in autônomo. Só falta dizer isso ao Airbnb. Com a opção marcada, seu anúncio aparece para quem usa o filtro de check-in autônomo na busca e o hóspede sabe antes de reservar que não vai depender de ninguém para entrar. Hoje comunicação é a sua nota mais baixa (4,44), e as instruções automáticas de chegada tiram da sua equipe uma parte das mensagens que o hóspede espera receber.</p>
+    </div></div>
+    <div class="evidence"><span class="r">Comunicação 4,44</span><span class="a">Semelhantes: 4,84 geral</span><span>Filtro de busca</span></div>
+    <div class="impact">
+      <div><div class="n">Visibilidade</div><div class="l">aparece no filtro de check-in autônomo</div></div>
+      <div><div class="n">Menos problemas</div><div class="l">na chegada, que pesam na sua taxa de 7,7%</div></div>
+    </div>
+    <details><summary>Passo a passo, leva 1 minuto por anúncio</summary><p>1. No app Airbnb, abra Anúncios e escolha a acomodação.<br>2. Toque em Chegada e saída, depois em Método de check-in.<br>3. Escolha como o hóspede entra: fechadura inteligente, teclado, cofre de chaves ou porteiro.<br>4. Escreva as instruções de chegada; elas são enviadas automaticamente ao hóspede antes do check-in.<br>5. Salve. Repita para as demais acomodações com o mesmo padrão de chegada.</p></details>
+    <div class="toggle"><label><input class="plan" type="checkbox"><span class="sw"></span>Incluir no meu plano</label></div>
+    <a class="btn" data-cta="checkin" href="#">Marcar check-in autônomo</a>
+  </div>
+
+  <div class="action" data-nights="0" data-gbv="0" data-name="Ativar o tour de fotos" data-flag="phototour">
+    <div class="k"><div class="num"></div><div>
+      <h3>Organize suas fotos com o tour de fotos</h3>
+      <p>O tour de fotos agrupa as imagens por cômodo e mostra ao hóspede exatamente o que ele vai encontrar em cada ambiente. É a primeira coisa que ele vê ao abrir o anúncio e uma das formas mais simples de alinhar expectativa, o que ajuda na nota de precisão (4,65) e no número de problemas relatados, hoje em 7,7% das viagens. Você não precisa de fotos novas: é só organizar as que já tem.</p>
+    </div></div>
+    <div class="evidence"><span class="r">Problemas em 7,7%</span><span class="a">Semelhantes: 2,5%</span><span>Sem fotos novas</span></div>
+    <div class="impact">
+      <div><div class="n">Expectativa</div><div class="l">alinhada antes da reserva</div></div>
+      <div><div class="n">Precisão</div><div class="l">a nota que mais depende das fotos</div></div>
+    </div>
+    <details><summary>Passo a passo, leva cerca de 5 minutos por anúncio</summary><p>1. No app Airbnb, abra Anúncios e escolha a acomodação.<br>2. Toque em Tour de fotos e depois em Começar.<br>3. Para cada cômodo que aparece, toque e selecione as fotos daquele ambiente.<br>4. Arraste para ordenar e escolha a foto de capa de cada cômodo.<br>5. Adicione uma legenda curta onde fizer diferença (vista, cama, cozinha equipada) e salve.</p></details>
+    <div class="toggle"><label><input class="plan" type="checkbox"><span class="sw"></span>Incluir no meu plano</label></div>
+    <a class="btn" data-cta="phototour" href="#">Abrir o tour de fotos</a>
+  </div>
+  <span class="src">Estimativas ilustrativas com base nos dados do relatório. Resultados reais dependem de demanda, sazonalidade e das configurações de cada anúncio; não representam garantia.</span>
+</section>
+
+<section id="calculadora">
+  <h2>Veja quanto a mais você pode ganhar</h2>
+  <p class="lead">Muita gente evita descontos achando que vai ganhar menos. Esta calculadora mostra o que acontece de verdade: o desconto traz hóspedes novos, custa um pouco nas reservas que você já faria, e o ajuste do seu preço base equilibra a conta. Em três passos você vê o resultado para o seu caso.</p>
+
+  <div class="calc">
+    <p class="step">1. Comece pelo seu cenário de hoje</p>
+    <div class="field"><span>Sua tarifa média por noite<small>o valor que o hóspede paga por noite, em média, antes de descontos (em US$, como no relatório)</small></span><input type="number" id="cT" value="67" min="1" step="1" inputmode="decimal"></div>
+    <div class="field"><span>Noites reservadas por mês hoje<small>somando todas as suas acomodações</small></span><input type="number" id="cN" value="4200" min="1" step="10" inputmode="numeric"></div>
+
+    <div class="today"><div class="l">Hoje, sem novos descontos, você gera por mês cerca de</div><div class="n" id="cToday">—</div></div>
+
+    <p class="step">2. Ligue os descontos que quer testar</p>
+    <p class="stephelp">Ligar um desconto aqui não muda nada no seu anúncio; é só simulação. Onde houver um controle de percentual, você pode ajustar e ver o custo mudar.</p>
+    <div class="promo" data-p="eb">
+      <div class="head"><label><input class="pOn" type="checkbox"><span class="sw"></span>Desconto de reserva antecipada</label></div>
+      <div class="pct"><span>Desconto</span><input class="pD" type="range" min="5" max="25" step="1" value="10"><output>10%</output></div>
+      <div class="hint">Vale para quem reserva com bastante antecedência. Um mark-up de <b class="pEq"></b> no preço base mantém sua diária líquida igual à de hoje.</div>
+    </div>
+    <div class="promo" data-p="nl">
+      <div class="head"><label><input class="pOn" type="checkbox"><span class="sw"></span>Desconto de novo anúncio, nos 34 nunca reservados</label></div>
+      <div class="pct"><span>Desconto</span><input class="pD" type="range" min="10" max="30" step="1" value="20"><output>20%</output></div>
+      <div class="hint">Vale só para as primeiras reservas de cada anúncio; não afeta reservas que você já tem.</div>
+    </div>
+
+
+    <div class="result">
+      <div class="big" id="cDelta">—</div>
+      <div class="sub" id="cDeltaSub">Ligue um desconto no passo 2 para ver a estimativa.</div>
+      <div class="grid">
+        <div><div class="n" id="cNights">—</div><div class="l">noites a mais por mês, trazidas pelos descontos</div></div>
+        <div><div class="n" id="cNew">—</div><div class="l">quanto você passaria a gerar por mês, no total</div></div>
+        <div><div class="n" id="cCost">—</div><div class="l">quanto deixa de receber em reservas que já teria, por causa do desconto</div></div>
+        <div><div class="n" id="cNet">—</div><div class="l">quanto entra para você por noite, em média, depois de tudo</div></div>
+      </div>
+      <div class="tip" id="cTip"></div>
+    </div>
+    <div class="markup-row">
+      <p class="step">3. Quer proteger ainda mais sua margem? Ajuste o preço base</p>
+      <p class="stephelp" id="cStep3">O valor acima já é o seu ganho estimado sem mexer em nada no preço. Ajustar o preço base é opcional: use este controle só se quiser entender qual ajuste compensa o desconto e mantém sua diária líquida.</p>
+      <label for="cM"><span>Quanto você subiria o preço base</span><output id="cMOut">0%</output></label>
+      <input type="range" id="cM" min="0" max="30" step="1" value="0">
+      <small>O desconto é sempre calculado em cima do preço que você define. Se você sobe o preço base, o hóspede continua vendo o desconto na busca, mas o valor que entra para você fica igual ou maior do que hoje.</small>
+      <div class="tip" id="cTip3"></div>
+    </div>
+    <details><summary>Como a calculadora chega nesses números</summary><p>Ela soma duas coisas e subtrai uma.<br><br><b>Soma 1: noites novas.</b> Cada desconto atrai hóspedes que não reservariam sem ele. Usamos o seu próprio histórico para estimar quantas: reserva antecipada cerca de +3% de noites (metade do caminho entre a sua fatia de reservas antecipadas e a dos semelhantes) e novo anúncio cerca de +2% (os 34 anúncios saindo do zero).<br><br><b>Soma 2: mark-up.</b> Se você sobe o preço base, todas as noites passam a valer mais.<br><br><b>Subtrai: o custo do desconto.</b> Parte dos hóspedes que já reservariam com você também ganha o desconto. No caso da reserva antecipada, estimamos 6,5% das reservas, que é a sua fatia atual de reservas com mais de 60 dias; o de novo anúncio não tem esse custo porque vale para anúncios sem reservas.<br><br>Mudar o percentual de um desconto muda o custo dele, não a quantidade de noites: não dá para prever com segurança quantos hóspedes a mais cada ponto de desconto traz, e preferimos não prometer isso.</p></details>
+  </div>
+  <span class="src">Estimativas ilustrativas. Não representam garantia de resultado.</span>
+</section>
+
+<section>
+  <h2>Um ponto de atenção na experiência do hóspede</h2>
+  <p class="lead">Sua nota média está em 4,55, contra 4,84 dos semelhantes, e a taxa de problemas em viagens está em 7,7%, três vezes a dos semelhantes. Isso pesa diretamente no selo Preferido dos Hóspedes, que hoje aparece em 8,9% dos seus anúncios contra 47,3%.</p>
+  <div class="rate">
+    <span>Localização</span><span class="v">4,78</span><div class="bar"><i style="width:95.6%"></i><b style="left:96.8%"></b></div>
+    <span>Limpeza</span><span class="v">4,68</span><div class="bar"><i style="width:93.6%"></i><b style="left:96.8%"></b></div>
+    <span>Precisão</span><span class="v">4,65</span><div class="bar"><i style="width:93%"></i><b style="left:96.8%"></b></div>
+    <span>Check-in</span><span class="v">4,62</span><div class="bar"><i style="width:92.4%"></i><b style="left:96.8%"></b></div>
+    <span>Custo-benefício</span><span class="v">4,56</span><div class="bar"><i style="width:91.2%"></i><b style="left:96.8%"></b></div>
+    <span>Comunicação</span><span class="v" style="color:var(--host)">4,44</span><div class="bar"><i style="width:88.8%"></i><b style="left:96.8%"></b></div>
+  </div>
+  <div class="legend"><span class="h"><i></i>Sua nota</span><span class="c"><i></i>Média dos semelhantes (4,84)</span></div>
+  <p class="lead" style="margin-top:18px">Comunicação é a nota que mais pesa. Podemos olhar juntos quais acomodações concentram os problemas e o que dá para automatizar antes da temporada, começando pelas instruções de chegada do check-in autônomo.</p>
+</section>
+
+<section>
+  <h2>Duas perguntas rápidas</h2>
+  <p class="lead">Suas respostas vão direto para o Yuri e ajudam a preparar a conversa.</p>
+  <div class="q"><p>Este resumo ficou claro para você?</p>
+    <div class="chips" data-q="clareza"><button type="button" aria-pressed="false">Sim, ficou claro</button><button type="button" aria-pressed="false">Mais ou menos</button><button type="button" aria-pressed="false">Não entendi parte</button></div></div>
+  <div class="q"><p>Qual ação você pretende fazer primeiro?</p>
+    <div class="chips" data-q="primeira"><button type="button" aria-pressed="false">Descontos</button><button type="button" aria-pressed="false">Liberar noites</button><button type="button" aria-pressed="false">Anúncios nunca reservados</button><button type="button" aria-pressed="false">Check-in ou fotos</button><button type="button" aria-pressed="false">Quero conversar antes</button></div></div>
+  <button class="btn" id="sendFb" type="button">Enviar respostas pelo WhatsApp</button>
+</section>
+
+<section class="close">
+  <h2>Quer passar por isso em 20 minutos?</h2>
+  <p class="lead">Eu levo o detalhamento por acomodação e saímos da conversa com os ajustes feitos.</p>
+  <a class="btn primary" data-cta="whatsapp" href="#">Falar com o Yuri no WhatsApp</a>
+  <p class="alt">Yuri Tartaglia, Market Manager, Airbnb Nordeste<br><a data-cta="agenda" href="#">Ou me mande os horários em que você consegue</a></p>
+</section>
+
+<footer>Preparado para CarpediemHomes. Valores em dólares, como no relatório de origem. Comparações com anúncios semelhantes são indicativas e não garantem resultados. Confidencial.</footer>
+</main>
+
+<div class="bar-plan" id="barPlan"><div class="in"><div><div class="t" id="barTxt">Seu plano</div><div class="n" id="barN"></div></div><a href="#plano" id="barBtn">Ver ações</a></div></div>
+
+<script>
+// ---- Configuração por conta: edite os links de destino ----
+var WA_NUMBER="5511992956173"; // WhatsApp do Yuri
+// Mostre só o que esta conta precisa:
+var SHOW = { selfcheckin: true, phototour: true };
+var LINKS = {
+  calendar:   "https://www.airbnb.com.br/hosting",
+  earlybird:  "https://www.airbnb.com.br/hosting",
+  newlisting: "https://www.airbnb.com.br/hosting",
+  checkin:    "https://www.airbnb.com.br/hosting",
+  phototour:  "https://www.airbnb.com.br/hosting",
+  whatsapp: "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Oi Yuri, vi o resumo da Carpediem e quero conversar sobre a alta temporada."),
+  agenda:   "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Quero agendar uma reunião, consigo nesses horários:")
+};
+document.querySelectorAll("[data-cta]").forEach(function(a){
+  var k=a.getAttribute("data-cta"); if(LINKS[k]){a.href=LINKS[k]; a.target="_blank"; a.rel="noopener";}
+});
+requestAnimationFrame(function(){ setTimeout(function(){document.getElementById("gap").classList.add("show");},150); });
+
+// ---- Cartas de comparação ----
+var cards=document.querySelectorAll("#cards .card"); document.getElementById("scT").textContent=cards.length;
+function score(){ var w=0; cards.forEach(function(c){ if(c.classList.contains("flip")&&c.classList.contains("win")) w++; }); document.getElementById("scW").textContent=w; }
+cards.forEach(function(c){ c.addEventListener("click",function(){ c.classList.add("flip"); score(); }); });
+document.getElementById("revealAll").addEventListener("click",function(){ cards.forEach(function(c,i){ setTimeout(function(){c.classList.add("flip");score();},i*90); }); });
+
+// ---- Plano: soma das ações selecionadas ----
+document.querySelectorAll(".action[data-flag]").forEach(function(a){ if(!SHOW[a.dataset.flag]) a.remove(); });
+var actions=document.querySelectorAll(".action"), N=actions.length;
+actions.forEach(function(a,i){ a.querySelector(".num").textContent=i+1; });
+function fmt(n){return Math.round(n).toLocaleString("pt-BR");}
+function plan(){
+  var n=0,g=0,c=0,names=[];
+  actions.forEach(function(a){
+    var on=a.querySelector(".plan").checked; a.classList.toggle("on",on);
+    if(on){c++; n+=+a.dataset.nights; g+=+a.dataset.gbv; names.push(a.dataset.name);}
+  });
+  var tot=document.getElementById("totGbv"), txt=document.getElementById("totTxt");
+  var bar=document.getElementById("barPlan");
+  if(c){
+    var gs=g.toLocaleString("pt-BR",{maximumFractionDigits:1});
+    tot.textContent=g?"+US$ "+gs+" mil por mês":"Qualidade e visibilidade";
+    txt.textContent=c+" de "+N+" ações"+(g?" · cerca de "+fmt(n)+" noites a mais por mês, "+Math.round(g/283*100)+"% acima do seu volume atual.":" · ações de experiência do hóspede, sem estimativa em valor.");
+    document.getElementById("barTxt").textContent=c+" de "+N+" ações no plano";
+    document.getElementById("barN").textContent=g?"+US$ "+gs+" mil/mês · +"+fmt(n)+" noites":"Experiência do hóspede";
+    bar.classList.add("show");
+  } else {
+    tot.textContent="Nada selecionado"; txt.textContent="Toque em uma ação abaixo para começar."; bar.classList.remove("show");
+  }
+  try{localStorage.setItem("carpediem-plan",JSON.stringify(Array.prototype.map.call(actions,function(a){return a.querySelector(".plan").checked;})));}catch(e){}
+  return names;
+}
+try{var s=JSON.parse(localStorage.getItem("carpediem-plan")||"[]");actions.forEach(function(a,i){a.querySelector(".plan").checked=!!s[i];});}catch(e){}
+actions.forEach(function(a){a.querySelector(".plan").addEventListener("change",plan);});
+plan();
+
+// ---- Calculadora de rentabilidade ----
+var ASSUMP={ eb:{uplift:0.029, affected:0.065}, nl:{uplift:0.021, affected:0} };
+var cT=document.getElementById("cT"), cN=document.getElementById("cN"), cM=document.getElementById("cM");
+function usd(v){ return (v<0?"−":"")+"US$ "+Math.round(Math.abs(v)).toLocaleString("pt-BR"); }
+function calc(){
+  var T=parseFloat(cT.value)||0, N=parseFloat(cN.value)||0, m=parseFloat(cM.value)/100;
+  document.getElementById("cMOut").textContent=Math.round(m*100)+"%";
+  var P=T*(1+m), today=N*T; document.getElementById("cToday").textContent=usd(today);
+  var extra=0, discNights=0, discCost=0, discExtraLoss=0, any=false;
+  document.querySelectorAll(".promo").forEach(function(pr){
+    var on=pr.querySelector(".pOn").checked, d=parseFloat(pr.querySelector(".pD").value)/100, a=ASSUMP[pr.dataset.p];
+    pr.classList.toggle("on",on); pr.querySelector("output").textContent=Math.round(d*100)+"%";
+    var eq=pr.querySelector(".pEq"); if(eq) eq.textContent=Math.round(d/(1-d)*100)+"%";
+    if(!on) return; any=true;
+    var e=N*a.uplift, af=N*a.affected;
+    extra+=e; discNights+=e+af; discCost+=af*P*d; discExtraLoss+=e*P*d;
+  });
+  var total=(N+extra)*P - discCost - discExtraLoss;
+  var delta=total-today;
+  var big=document.getElementById("cDelta"), sub=document.getElementById("cDeltaSub");
+  if(!any){ big.textContent="—"; big.className="big"; sub.textContent="Ligue um desconto acima para ver a estimativa."; }
+  else{
+    big.textContent=(delta>=0?"+":"")+usd(delta)+" por mês"; big.className="big"+(delta<0?" neg":"");
+    sub.textContent=(delta>=0?"a mais do que hoje, ":"a menos do que hoje, ")+Math.abs(Math.round(delta/today*100))+"% "+(delta>=0?"de aumento":"de queda")+" no ganho mensal estimado.";
+  }
+  document.getElementById("cNights").textContent=any?"+"+Math.round(extra).toLocaleString("pt-BR"):"—";
+  document.getElementById("cNew").textContent=any?usd(total):"—";
+  document.getElementById("cCost").textContent=any?usd(-discCost):"—";
+  var nights=N+extra; document.getElementById("cNet").textContent=any&&nights?usd(total/nights):"—";
+  var tip=document.getElementById("cTip"), tip3=document.getElementById("cTip3");
+  // step 3: show what the result is WITHOUT markup
+  var base0=0; if(any){ var P0=T, dc0=0, dl0=0, ex0=0;
+    document.querySelectorAll(".promo").forEach(function(pr){ if(!pr.querySelector(".pOn").checked) return; var d=parseFloat(pr.querySelector(".pD").value)/100, a=ASSUMP[pr.dataset.p]; var e=N*a.uplift, af=N*a.affected; ex0+=e; dc0+=af*P0*d; dl0+=e*P0*d; });
+    base0=(N+ex0)*P0-dc0-dl0-today; }
+  if(!any) tip3.textContent="";
+  else if(m===0) tip3.textContent="Sem ajustar o preço base, seu ganho estimado é de "+(base0>=0?"+":"")+usd(base0)+" por mês. Mova o controle para ver quanto um ajuste acrescenta.";
+  else tip3.textContent="Sem ajuste: "+(base0>=0?"+":"")+usd(base0)+" por mês. Com "+Math.round(m*100)+"% no preço base: "+(delta>=0?"+":"")+usd(delta)+" por mês.";
+  if(!any) tip.textContent="";
+  else if(delta<0) tip.textContent="Neste cenário o desconto custa mais do que traz. Mova o controle do passo 3: subir o preço base recupera sua diária e o hóspede continua vendo o desconto na busca.";
+  else if(m===0) tip.textContent="Este é o seu ganho estimado sem mexer no preço. Só com as ações, você já gera mais. O passo 3 abaixo é opcional.";
+  else tip.textContent="Subindo o preço base em "+Math.round(m*100)+"%, entra para você em média "+usd(total/nights)+" por noite, contra "+usd(T)+" hoje, e com mais noites reservadas.";
+}
+[cT,cN,cM].forEach(function(el){el.addEventListener("input",calc);});
+document.querySelectorAll(".promo .pOn, .promo .pD").forEach(function(el){el.addEventListener("input",calc);});
+calc();
+
+// ---- Perguntas ----
+var answers={};
+document.querySelectorAll(".chips").forEach(function(g){
+  g.querySelectorAll("button").forEach(function(b){
+    b.addEventListener("click",function(){
+      g.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed","false");});
+      b.setAttribute("aria-pressed","true"); answers[g.dataset.q]=b.textContent;
+    });
+  });
+});
+document.getElementById("sendFb").addEventListener("click",function(){
+  var names=plan();
+  var msg="Oi Yuri, respondi o resumo da Carpediem:\n"+
+    "• Ficou claro? "+(answers.clareza||"não respondi")+"\n"+
+    "• Primeira ação: "+(answers.primeira||"não respondi")+"\n"+
+    "• Meu plano: "+(names.length?names.join(", "):"nenhuma ação selecionada ainda");
+  window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg),"_blank","noopener");
+});
+</script>
+</body>
+</html>
